@@ -1,0 +1,522 @@
+
+/* ===== LOGIN BUTTON ===== */
+.login-btn {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #7c7cff, #5b5bff);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(124,124,255,.35);
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.65);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: auto;
+    transition: opacity .3s ease;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ===== POPUP / MODAL ===== */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 420px;
+    background: #1F1F23;
+    border-radius: 18px;
+    padding: 28px 26px;
+    transform: translate(-50%, -50%) scale(.92);
+    opacity: 0;
+    pointer-events: none;
+    transition: all .35s ease;
+    z-index: 9999;
+    box-shadow: 0 40px 120px rgba(0,0,0,.6);
+}
+
+.popup.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* ===== HEADER ===== */
+#popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    color: #F5F5F7;
+}
+
+.title-header {
+    width: fit-content;  /* atau width: max-content; */
+    margin: 0 auto;  
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center; 
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #b6bcff;
+    font-size: 25px;
+    cursor: pointer;
+    transition: color .2s, transform .2s;
+}
+
+.close-btn:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* ===== TEXT ===== */
+.text-title{
+    font-size: 24px;
+    font-weight: bold;
+    color: #F5F5F7;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: #9a9aa1;
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+/* ===== BUTTONS ===== */
+.btn-google,
+.btn-phone,
+.btn-enter {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: transform .2s, box-shadow .2s;
+    z-index: 1;
+}
+
+.btn-google {
+    background: rgba(255,255,255,.08);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,.15);
+}
+.login-text{ 
+    color: #f5f3f3;
+    position: relative;
+    right: 10px;
+    z-index: 2;
+}
+
+
+
+.fa-google {
+    font-size: 18px;             /* ukuran icon */
+    display: inline-block;
+     transform: translateX(-80px);
+}
+
+.fa-envelope {
+    font-size: 18px; /* ukuran icon */
+    display: inline-block;
+    transform: translateX(-86px);
+}
+
+.btn-phone {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.15);
+}
+
+.fa-phone {
+    font-size: 18px; /* ukuran icon */
+    display: inline-block;              
+    transform: translateX(-75px);
+}
+
+.btn-enter {
+    background-color: #F5F5F7;
+    color: #1F1F23;
+    margin-top: 6px;
+    padding: 10px 20px; /* opsional, biar tombol agak besar */
+    border: none;       /* hilangkan border default */
+    border-radius: 18px; /* opsional, biar agak melengkung */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* smooth effect */
+}
+
+.btn-enter:hover {
+    background-color: #1F1F23; /* warna baru saat hover */
+    color: #e7e6e6;             /* warna teks saat hover */
+    border: 1px solid #fdfdfd;
+}
+
+.btn-google:hover,
+.btn-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    color: #f2f2f5;
+    margin: 16px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.15);
+}
+
+.divider::before {
+    margin-right: 10px;
+}
+
+.divider::after {
+    margin-left: 10px;
+}
+
+/* ===== INPUT ===== */
+.input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.15);
+    color: #fff;
+    outline: none;
+    margin-bottom: 14px;
+}
+
+.input::placeholder {
+    color: #fdfdff;
+}
+
+.input:focus {
+    border-color: #b0b0b0;
+    box-shadow: 0 0 0 3px rgba(124,124,255,.25);
+}
+
+.regis-text{
+    color:#F5F5F7 ;
+    cursor: pointer;
+}
+
+/* ===== FOOTER TEXT ===== */
+.small {
+    font-size: 14px;
+    color: #9a9aa1;
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* TOAST */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1f2937;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.error {
+    background: #7f1d1d;
+}
+
+/* ================= SETUP PROFILE OVERLAY ================= */
+
+.overlay-profile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.overlay-profile.show {
+  display: flex;
+}
+
+/* ================= SETUP PROFILE MODAL ================= */
+
+.modal-setupProfile {
+  background: #1E1E21;
+  width: 420px;
+  padding: 24px;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.modal-setupProfile h2 {
+  margin-bottom: 20px;
+}
+
+/* ================= AVATAR ================= */
+
+.avatar-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 30px;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.8);
+}
+
+/* ================= BUTTON ICON ================= */
+
+.fa-camera {
+  font-size: 22px;
+  color: rgb(213, 212, 212);
+}
+
+.fa-trash-can {
+  font-size: 18px;
+}
+
+/* ================= AVATAR ACTION BUTTON ================= */
+
+.camera-btn {
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #111;
+  border: 1px solid #5a5a5a;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.camera-btn:hover {
+  border-color: transparent;
+  background: #343434;
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  position: absolute;
+  bottom: -10px;
+  left: 10%;
+  background: #111;
+  color: #c92222;
+  border: 1px solid #505050;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  border-color: transparent;
+  color: #f3f3f3;
+  background: #c90b0b;
+  transform: scale(1.1);
+}
+
+/* ================= FORM ================= */
+
+.form-group {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 15px;
+}
+
+/* ================= ACTION BUTTON ================= */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 24px;
+  border-radius: 20px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2e2e2e;
+  color: #efefef;
+}
+
+.cancel {
+  background: #3A3A3A;
+  color: #e1dfdf;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.save {
+  background: #efefef;
+  color: #1E1E21;
+  border: 1px solid rgb(182, 182, 182);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.save:hover {
+  background: #1E1E21;
+  color: #efefef;
+}
+
+/* ================= DELETE CONFIRM POPUP ================= */
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-overlay.show {
+  display: flex;
+}
+
+.popup-box {
+  background: #1e1e21;
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  text-align: left;
+}
+
+.popup-box p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #f6f1f1;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-no {
+  all: unset;
+  padding: 8px 14px;
+  border-radius: 12px;
+  color: #efefef;
+  cursor: pointer;
+  position: relative;
+  left: 45%;
+  transition: 0.3s ease;
+}
+
+.btn-no:hover {
+  background-color: #333335;
+}
+
+.btn-delete {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c62c2a;
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .popup {
+        margin: 0 14px;
+        padding: 24px 20px;
+    }
+}
