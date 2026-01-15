@@ -26,9 +26,6 @@
 
 <body>
 
-    <!-- BACKGROUND (PALING BAWAH) -->
-    @include('layout.background')
-
     <!-- CONTENT WRAPPER -->
     <div id="app">
 
@@ -43,7 +40,7 @@
     </div>
 
 
-    
+
     <script src="{{ asset('js/auth.js') }}"></script>
 </body>
 
