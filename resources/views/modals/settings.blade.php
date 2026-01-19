@@ -1,56 +1,44 @@
+<!-- ================= SETTINGS MODAL ================= -->
 <style>
-    /* ================= OVERLAY ================= */
-    .settings-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-    }
-
-    /* ================= MODAL ================= */
-    .settings-modal {
+    /* ===== SETTINGS POPUP ===== */
+    .popup-settings {
         width: 900px;
-        height: 520px;
-        background: #050505;
-        border-radius: 16px;
+        max-width: 95%;
+    }
+
+    /* BODY */
+    .settings-body {
         display: flex;
-        overflow: hidden;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        margin-top: 18px;
+        height: 420px;
     }
 
-    /* ================= LEFT SIDEBAR ================= */
+    /* LEFT MENU */
     .settings-menu {
-        width: 260px;
-        background: radial-gradient(circle at top, #1c1c1c, #050505);
-        padding: 20px;
-        border-right: 1px solid #e5e5e5;
-    }
-
-    .settings-menu h3 {
-        margin-bottom: 16px;
-        font-size: 18px;
+        width: 240px;
+        border-right: 1px solid #222;
+        padding-right: 12px;
     }
 
     .settings-menu ul {
         list-style: none;
         padding: 0;
+        margin: 0;
     }
 
     .settings-menu li {
         padding: 12px 14px;
         margin-bottom: 6px;
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 8px;
+        color: #aaa;
         font-weight: 500;
-        transition: 0.2s;
+        transition: 0.25s;
     }
 
     .settings-menu li:hover {
-        background: #eaeaea;
-        color: #000;
+        background: #1c1c1c;
+        color: #fff;
     }
 
     .settings-menu li.active {
@@ -58,120 +46,119 @@
         color: #fff;
     }
 
-    /* ================= RIGHT CONTENT ================= */
+    /* RIGHT CONTENT */
     .settings-content {
         flex: 1;
-        padding: 28px;
-        position: relative;
+        padding: 10px 20px;
     }
 
-    .settings-content h2 {
+    .settings-content h3 {
         margin-bottom: 10px;
     }
 
     .settings-content p {
-        color: #c9c9c9;
+        color: #bfbfbf;
         line-height: 1.6;
     }
 
-    /* ================= CLOSE ================= */
-    .close-btn {
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        background: none;
-        border: none;
-        font-size: 28px;
-        cursor: pointer;
-    }
-
-    /* ================= TABS ================= */
-    .tab {
+    /* TABS */
+    .settings-tab {
         display: none;
     }
 
-    .tab.active {
+    .settings-tab.active {
         display: block;
     }
 </style>
 
-<!-- ================= SETTINGS MODAL ================= -->
-<div class="settings-overlay" id="settingsOverlay">
-    <div class="settings-modal">
+<div id="popupSettings" class="popup popup-settings">
 
-        <!-- LEFT -->
+    <!-- HEADER -->
+    <div id="popup-header">
+        <h2 class="title-header">Settings</h2>
+        <button class="close-btn" id="closeSettings">x</button>
+    </div>
+
+    <!-- BODY -->
+    <div class="settings-body">
+
+        <!-- LEFT MENU -->
         <div class="settings-menu">
-            <h3>Settings</h3>
             <ul>
-                <li class="active" data-tab="general">General</li>
-                <li data-tab="account">Account</li>
-                <li data-tab="personalization">Personalization</li>
-                <li data-tab="notification">Notification</li>
-                <li data-tab="theme">Theme</li>
+                <li class="active" data-tab="settings-general">General</li>
+                <li data-tab="settings-account">Account</li>
+                <li data-tab="settings-personalization">Personalization</li>
+                <li data-tab="settings-notification">Notification</li>
+                <li data-tab="settings-theme">Theme</li>
             </ul>
         </div>
 
-        <!-- RIGHT -->
+        <!-- RIGHT CONTENT -->
         <div class="settings-content">
-            <button class="close-btn" id="closeSettings">&times;</button>
 
-            <div class="tab active" id="general">
-                <h2>General</h2>
+            <div class="settings-tab active" id="settings-general">
+                <h3>General</h3>
                 <p>Language, system preferences, and application behavior.</p>
             </div>
 
-            <div class="tab" id="account">
-                <h2>Account</h2>
+            <div class="settings-tab" id="settings-account">
+                <h3>Account</h3>
                 <p>Email, password, and security configuration.</p>
             </div>
 
-            <div class="tab" id="personalization">
-                <h2>Personalization</h2>
+            <div class="settings-tab" id="settings-personalization">
+                <h3>Personalization</h3>
                 <p>Profile customization and layout preferences.</p>
             </div>
 
-            <div class="tab" id="notification">
-                <h2>Notification</h2>
+            <div class="settings-tab" id="settings-notification">
+                <h3>Notification</h3>
                 <p>Manage notification alerts and sound preferences.</p>
             </div>
 
-            <div class="tab" id="theme">
-                <h2>Theme</h2>
+            <div class="settings-tab" id="settings-theme">
+                <h3>Theme</h3>
                 <p>Switch between Light and Dark mode.</p>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
 
-<!-- ================= SCRIPT ================= -->
 <script>
-    const overlay = document.getElementById("settingsOverlay");
-    const closeBtn = document.getElementById("closeSettings");
+    /* ================= SETTINGS MODAL LOGIC ================= */
 
-    const menuItems = document.querySelectorAll(".settings-menu li");
-    const tabs = document.querySelectorAll(".tab");
+    (() => {
+        const popup = document.getElementById('popupSettings');
+        const closeBtn = document.getElementById('closeSettings');
+        const menuItems = popup.querySelectorAll('.settings-menu li');
+        const tabs = popup.querySelectorAll('.settings-tab');
 
-    /* === OPEN MODAL (DIPANGGIL DARI SIDEBAR) === */
-    function openSettingsModal() {
-        overlay.style.display = "flex";
-    }
+        /* OPEN SETTINGS */
+        window.openSettingsModal = function() {
+            if (typeof closeAll === 'function') closeAll();
+            popup.classList.add('active');
+            document.getElementById('overlay')?.classList.add('active');
+        };
 
-    /* === CLOSE MODAL === */
-    closeBtn.onclick = () => overlay.style.display = "none";
+        /* CLOSE SETTINGS */
+        closeBtn.onclick = () => {
+            popup.classList.remove('active');
+            document.getElementById('overlay')?.classList.remove('active');
+        };
 
-    overlay.addEventListener("click", e => {
-        if (e.target === overlay) overlay.style.display = "none";
-    });
+        /* TAB SWITCH */
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
 
-    /* === TAB SWITCH === */
-    menuItems.forEach(item => {
-        item.addEventListener("click", () => {
-            menuItems.forEach(i => i.classList.remove("active"));
-            tabs.forEach(t => t.classList.remove("active"));
+                menuItems.forEach(i => i.classList.remove('active'));
+                tabs.forEach(t => t.classList.remove('active'));
 
-            item.classList.add("active");
-            document.getElementById(item.dataset.tab).classList.add("active");
+                item.classList.add('active');
+
+                const target = popup.querySelector('#' + item.dataset.tab);
+                if (target) target.classList.add('active');
+            });
         });
-    });
+    })();
 </script>
