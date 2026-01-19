@@ -1,29 +1,78 @@
 <style>
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
+    /* ================= THEME VARIABLES ================= */
+    :root {
+        --bg-main: #050505;
+        --bg-panel: #1a1a1a;
+        --bg-panel-soft: #121212;
+        --bg-hover: #2a2a2a;
+
+        --text-main: #ffffff;
+        --text-muted: #aaa;
+        --text-dim: #888;
+
+        --border-color: #222;
+
+        --accent-color: #667eea;
+        --accent-gradient: linear-gradient(45deg, #667eea, #764ba2);
+    }
+
+    /* LIGHT MODE */
+    html[data-theme="light"] {
+        --bg-main: #ffffff;
+        --bg-panel: #f5f5f5;
+        --bg-panel-soft: #eeeeee;
+        --bg-hover: #dddddd;
+
+        --text-main: #000000;
+        --text-muted: #555;
+        --text-dim: #777;
+
+        --border-color: #dddddd;
+    }
+
+    /* SYSTEM MODE */
+    @media (prefers-color-scheme: light) {
+        html[data-theme="system"] {
+            --bg-main: #ffffff;
+            --bg-panel: #f5f5f5;
+            --bg-panel-soft: #eeeeee;
+            --bg-hover: #dddddd;
+
+            --text-main: #000000;
+            --text-muted: #555;
+            --text-dim: #777;
+
+            --border-color: #dddddd;
+        }
+    }
+
+    /* ================= RESET ================= */
     * {
         box-sizing: border-box;
         font-family: "Manrope", sans-serif;
     }
 
+    /* ================= SIDEBAR ================= */
     .sidebar {
         width: 280px;
         height: 100vh;
-        background: radial-gradient(circle at top, #1c1c1c, #050505);
-        color: #fff;
+        background: var(--bg-main);
+        color: var(--text-main);
         display: flex;
         flex-direction: column;
         padding: 16px;
     }
 
-    /* Header */
+    /* ================= HEADER ================= */
     .sidebar-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-bottom: 16px;
-        border-bottom: 1px solid #222;
+        border-bottom: 1px solid var(--border-color);
     }
 
     .brand {
@@ -36,12 +85,12 @@
         width: 4vh;
     }
 
-
     .title {
         font-size: 18px;
+        color: var(--text-main);
     }
 
-    /* Toggle */
+    /* ================= TOGGLE ================= */
     .switch {
         position: relative;
         width: 40px;
@@ -53,7 +102,7 @@
     }
 
     .slider {
-        background: #333;
+        background: var(--bg-hover);
         border-radius: 20px;
         position: absolute;
         inset: 0;
@@ -63,7 +112,7 @@
         content: "";
         width: 18px;
         height: 18px;
-        background: #fff;
+        background: var(--text-main);
         border-radius: 50%;
         position: absolute;
         top: 2px;
@@ -75,10 +124,10 @@
         transform: translateX(18px);
     }
 
-    /* Search */
+    /* ================= SEARCH ================= */
     .search-box {
         margin: 16px 0;
-        background: #121212;
+        background: var(--bg-panel-soft);
         border-radius: 10px;
         display: flex;
         align-items: center;
@@ -90,18 +139,18 @@
         background: transparent;
         border: none;
         outline: none;
-        color: #fff;
+        color: var(--text-main);
         width: 100%;
     }
 
-    /* Menu */
+    /* ================= MENU ================= */
     .menu {
         flex: 1;
     }
 
     .menu-title {
         font-size: 12px;
-        color: #888;
+        color: var(--text-dim);
         margin-bottom: 8px;
     }
 
@@ -111,24 +160,24 @@
         gap: 12px;
         padding: 12px;
         border-radius: 10px;
-        color: #ccc;
+        color: var(--text-muted);
         text-decoration: none;
         margin-bottom: 6px;
     }
 
     .menu-item.active,
     .menu-item:hover {
-        background: #2a2a2a;
-        color: #fff;
+        background: var(--bg-hover);
+        color: var(--text-main);
     }
 
     .menu-item .arrow {
         margin-left: auto;
     }
 
-    /* Upgrade */
+    /* ================= UPGRADE ================= */
     .upgrade-card {
-        background: #1a1a1a;
+        background: var(--bg-panel);
         border-radius: 14px;
         padding: 16px;
         margin-bottom: 16px;
@@ -143,57 +192,64 @@
         border: none;
         padding: 10px;
         border-radius: 20px;
-        background: #eaeaea;
+        background: var(--text-main);
+        color: var(--bg-main);
         font-weight: 600;
         cursor: pointer;
     }
 
-    /* User */
-    .user {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: #1a1a1a;
-        padding: 12px;
-        border-radius: 14px;
-    }
-
+    /* ================= USER ================= */
+    .user,
     .user-main {
         display: flex;
         align-items: center;
         gap: 10px;
-        background: #1a1a1a;
+        background: var(--bg-panel);
         padding: 12px;
         border-radius: 14px;
     }
 
     .user-main:hover {
-        background-color: rgba(60, 60, 60, 0.564);
+        background: var(--bg-hover);
     }
 
+    .user img,
     .user-main img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        object-fit: cover;
+        background: var(--accent-gradient);
+        padding: 2px;
     }
 
+    .user-info {
+        flex: 1;
+        min-width: 0;
+    }
 
-    .user img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
+    .user-info strong {
+        font-size: 14px;
+        color: var(--text-main);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .user-info small {
-        color: #aaa;
+        font-size: 12px;
+        color: var(--text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
+    /* ================= DROPDOWN ================= */
     .arrow {
-        background: transparent;
+        background: none;
         border: none;
-        color: #fff;
+        color: var(--text-main);
         cursor: pointer;
-
         transition: transform 0.3s ease;
     }
 
@@ -201,9 +257,8 @@
         transform: rotate(180deg);
     }
 
-
     .user-dropdown {
-        background: #1a1a1a;
+        background: var(--bg-panel);
         border-radius: 14px;
         padding: 0 8px;
         margin-bottom: 12px;
@@ -216,8 +271,7 @@
         transform: translateY(10px);
         overflow: hidden;
 
-        transition:
-            max-height 0.35s ease,
+        transition: max-height 0.35s ease,
             opacity 0.25s ease,
             transform 0.25s ease;
     }
@@ -235,214 +289,31 @@
         padding: 10px 12px;
         border-radius: 10px;
         text-decoration: none;
-        color: #ddd;
+        color: var(--text-muted);
         font-size: 14px;
     }
 
     .user-dropdown a:hover {
-        background: #2a2a2a;
-        color: #fff;
+        background: var(--bg-hover);
+        color: var(--text-main);
     }
 
     .user-dropdown .divider {
         height: 1px;
-        background: #2a2a2a;
+        background: var(--bg-hover);
         margin: 6px 0;
     }
 
-    .user-dropdown .logout {
+    .user-dropdown a.logout {
         color: #ff6b6b;
+        background: rgba(255, 107, 107, 0.1);
     }
 
-    .user .arrow {
-        transition: transform 0.3s ease;
+    .user-dropdown a.logout:hover {
+        background: rgba(255, 107, 107, 0.2);
     }
-
-    .user.active .arrow {
-        transform: rotate(180deg);
-    }
-
-    /* Avatar styling improvements */
-.user img, 
-.user-dropdown img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid transparent;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    padding: 2px;
-}
-
-.user-main img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid transparent;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    padding: 2px;
-}
-
-/* Guest avatar styling */
-.user:not(:has(.auth)) img,
-.user-dropdown:not(:has(.auth)) img {
-    opacity: 0.7;
-    filter: grayscale(30%);
-}
-
-/* User info improvements */
-.user-info {
-    flex: 1;
-    min-width: 0; /* Prevent overflow */
-}
-
-.user-info strong {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px;
-}
-
-.user-info small {
-    display: block;
-    font-size: 12px;
-    color: #aaa;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px;
-}
-
-/* Auth status indicators */
-.user.authenticated {
-    background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-}
-
-.user.guest {
-    background: rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-}
-
-.user.guest:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.user.guest .user-info strong {
-    color: #ccc;
-}
-
-.user.guest .user-info small {
-    color: #888;
-}
-
-/* Dropdown links improvements */
-.user-dropdown a .material-icons {
-    font-size: 18px;
-    width: 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.user-dropdown a.logout {
-    color: #ff6b6b;
-    background: rgba(255, 107, 107, 0.1);
-}
-
-.user-dropdown a.logout:hover {
-    background: rgba(255, 107, 107, 0.2);
-}
-
-/* Login link in dropdown for guests */
-.user-dropdown a.login-link {
-    color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
-}
-
-.user-dropdown a.login-link:hover {
-    background: rgba(102, 126, 234, 0.2);
-}
-
-/* Avatar loading state */
-.user img,
-.user-main img {
-    position: relative;
-}
-
-.user img::before,
-.user-main img::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
-    background-size: 200% 100%;
-    border-radius: 50%;
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-.user img.loaded::before,
-.user-main img.loaded::before {
-    display: none;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .user-info strong,
-    .user-info small {
-        max-width: 100px;
-    }
-    
-    .user-dropdown {
-        position: fixed;
-        bottom: 80px;
-        right: 16px;
-        left: 16px;
-        max-width: 300px;
-        margin: 0 auto;
-        z-index: 1000;
-    }
-    
-    .user {
-        padding: 8px;
-    }
-    
-    .user img,
-    .user-main img {
-        width: 36px;
-        height: 36px;
-    }
-}
-
-@media (max-width: 480px) {
-    .user-info strong,
-    .user-info small {
-        max-width: 80px;
-        font-size: 12px;
-    }
-    
-    .user-info small {
-        font-size: 10px;
-    }
-    
-    .user-dropdown {
-        min-width: auto;
-        width: calc(100% - 32px);
-    }
-}
 </style>
+
 
 <aside class="sidebar">
     <!-- Header -->
@@ -482,71 +353,72 @@
     </div>
 
     <!-- USER DROPDOWN -->
-<div class="user-dropdown" id="userDropdown">
-    @auth
-        <div class="user-main" id="openProfileModal" style="cursor: pointer">
-            <img src="{{ auth()->user()->avatar_url }}" alt="User">
+    <div class="user-dropdown" id="userDropdown">
+        @auth
+            <div class="user-main" id="openProfileModal" style="cursor: pointer">
+                <img src="{{ auth()->user()->avatar_url }}" alt="User">
+                <div class="user-info">
+                    <strong>{{ auth()->user()->display_name }}</strong>
+                    <small>{{ auth()->user()->username }}</small>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+            <a href="#" onclick="openSettingsModal()">
+                <span class="material-icons">settings</span>
+                Settings
+            </a>
+            <a href="#">
+                <span class="material-icons">help_outline</span>
+                Help
+            </a>
+            <div class="divider"></div>
+            <a href="#" class="logout"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <span class="material-icons">logout</span>
+                Log Out
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @else
+            <!-- Tampilan untuk guest di dropdown -->
+            <div class="user-main">
+                <img src="{{ asset('/images/avatars/agent-default.png') }}" alt="User">
+                <div class="user-info">
+                    <strong>Guest Agent</strong>
+                    <small>Please login</small>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <a href="#" onclick="document.getElementById('openLogin').click();">
+                <span class="material-icons">login</span>
+                Login / Register
+            </a>
+        @endauth
+    </div>
+
+    <!-- User -->
+    <div class="user {{ auth()->check() ? 'authenticated' : 'guest' }}" id="userHeader">
+        @auth
+            <img src="{{ auth()->user()->avatar_url }}" alt="User" loading="lazy">
             <div class="user-info">
                 <strong>{{ auth()->user()->display_name }}</strong>
                 <small>{{ auth()->user()->username }}</small>
             </div>
-        </div>
-
-        <div class="divider"></div>
-        <a href="#" onclick="openSettingsModal()">
-            <span class="material-icons">settings</span>
-            Settings
-        </a>
-        <a href="#">
-            <span class="material-icons">help_outline</span>
-            Help
-        </a>
-        <div class="divider"></div>
-        <a href="#" class="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <span class="material-icons">logout</span>
-            Log Out
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-    @else
-        <!-- Tampilan untuk guest di dropdown -->
-        <div class="user-main">
-            <img src="{{ asset('/images/avatars/agent-default.png') }}" alt="User">
+            <button class="material-icons arrow" id="userToggle">expand_more</button>
+        @else
+            <!-- Tampilan sebelum login -->
+            <img src="{{ asset('/images/avatars/agent-default.png') }}" alt="Guest" loading="lazy">
             <div class="user-info">
                 <strong>Guest Agent</strong>
-                <small>Please login</small>
+                <small>Click to login</small>
             </div>
-        </div>
-        <div class="divider"></div>
-        <a href="#" onclick="document.getElementById('openLogin').click();">
-            <span class="material-icons">login</span>
-            Login / Register
-        </a>
-    @endauth
-</div>
-
-<!-- User -->
-<div class="user {{ auth()->check() ? 'authenticated' : 'guest' }}" id="userHeader">
-    @auth
-        <img src="{{ auth()->user()->avatar_url }}" alt="User" loading="lazy">
-        <div class="user-info">
-            <strong>{{ auth()->user()->display_name }}</strong>
-            <small>{{ auth()->user()->username }}</small>
-        </div>
-        <button class="material-icons arrow" id="userToggle">expand_more</button>
-    @else
-        <!-- Tampilan sebelum login -->
-        <img src="{{ asset('/images/avatars/agent-default.png') }}" alt="Guest" loading="lazy">
-        <div class="user-info">
-            <strong>Guest Agent</strong>
-            <small>Click to login</small>
-        </div>
-        <button class="material-icons arrow" id="userToggle">expand_more</button>
-        <!-- Hidden login trigger -->
-        <button id="openLogin" style="display: none;">Login</button>
-    @endauth
-</div>
+            <button class="material-icons arrow" id="userToggle">expand_more</button>
+            <!-- Hidden login trigger -->
+            <button id="openLogin" style="display: none;">Login</button>
+        @endauth
+    </div>
 
 
     @include('modals.edit-profile')
@@ -642,7 +514,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const userHeader = document.querySelector('.user');
         const openLoginBtn = document.getElementById('openLogin');
-        
+
         if (userHeader && openLoginBtn && !{{ auth()->check() ? 'true' : 'false' }}) {
             userHeader.style.cursor = 'pointer';
             userHeader.addEventListener('click', function(e) {
@@ -657,7 +529,7 @@
     function updateAuthIndicator() {
         const isAuthenticated = {{ auth()->check() ? 'true' : 'false' }};
         const userElement = document.querySelector('.user');
-        
+
         if (userElement) {
             if (isAuthenticated) {
                 userElement.classList.add('authenticated');
@@ -672,27 +544,27 @@
     document.addEventListener('DOMContentLoaded', updateAuthIndicator);
 
     // Handle image loading
-document.addEventListener('DOMContentLoaded', function() {
-    const userImages = document.querySelectorAll('.user img, .user-dropdown img');
-    
-    userImages.forEach(img => {
-        // Add loading class
-        img.classList.remove('loaded');
-        
-        // Check if image is already loaded
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', function() {
-                this.classList.add('loaded');
-            });
-            
-            img.addEventListener('error', function() {
-                // Fallback to default avatar
-                this.src = '{{ asset('/images/avatars/agent-default.png') }}';
-                this.classList.add('loaded');
-            });
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+        const userImages = document.querySelectorAll('.user img, .user-dropdown img');
+
+        userImages.forEach(img => {
+            // Add loading class
+            img.classList.remove('loaded');
+
+            // Check if image is already loaded
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', function() {
+                    this.classList.add('loaded');
+                });
+
+                img.addEventListener('error', function() {
+                    // Fallback to default avatar
+                    this.src = '{{ asset('/images/avatars/agent-default.png') }}';
+                    this.classList.add('loaded');
+                });
+            }
+        });
     });
-});
 </script>
